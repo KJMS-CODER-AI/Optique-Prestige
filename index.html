@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OPTIQUE PRESTIGE — L'univers de la vue</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Helvetica Neue', Arial, sans-serif; background:#faf9f7; color:#1a1a1a; }
+  a { text-decoration:none; color:inherit; }
+
+  nav {
+    position:sticky; top:0; z-index:100;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:20px 6%; background:rgba(250,249,247,.95); backdrop-filter:blur(10px);
+    border-bottom:1px solid #e8e5e0;
+  }
+  .logo { font-size:20px; letter-spacing:4px; font-weight:700; }
+  .logo span { color:#b8935a; }
+  nav ul { display:flex; gap:35px; list-style:none; font-size:13px; letter-spacing:2px; }
+  nav ul a:hover { color:#b8935a; }
+  .nav-cta {
+    background:#1a1a1a; color:#fff; padding:12px 28px;
+    font-size:12px; letter-spacing:2px; transition:background .3s;
+  }
+  .nav-cta:hover { background:#b8935a; }
+
+  header {
+    min-height:88vh; display:flex; align-items:center;
+    background:linear-gradient(rgba(15,15,15,.55), rgba(15,15,15,.55)),
+      url('https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=1600&q=80') center/cover;
+    color:#fff; padding:0 8%;
+  }
+  header .content { max-width:620px; }
+  .eyebrow { font-size:12px; letter-spacing:5px; color:#d4b483; margin-bottom:22px; }
+  header h1 { font-size:clamp(38px,5.5vw,64px); font-weight:300; line-height:1.15; }
+  header h1 strong { font-weight:700; }
+  header p { margin:25px 0 38px; font-size:16px; line-height:1.7; color:#e5e2dd; max-width:480px; }
+  .btn-gold {
+    display:inline-block; background:#b8935a; color:#fff; border:none; cursor:pointer;
+    padding:17px 45px; font-size:13px; letter-spacing:3px; transition:.3s;
+  }
+  .btn-gold:hover { background:#9a7a45; transform:translateY(-2px); }
+
+  section { padding:100px 6%; }
+  .section-head { text-align:center; margin-bottom:70px; }
+  .section-head .eyebrow { color:#b8935a; }
+  .section-head h2 { font-size:clamp(28px,4vw,42px); font-weight:300; }
+  .section-head h2 strong { font-weight:700; }
+
+  .grid {
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:35px;
+    max-width:1300px; margin:0 auto;
+  }
+  .card {
+    position:relative; background:#fff; border:1px solid #eceae5; overflow:hidden;
+    transition:transform .35s, box-shadow .35s; cursor:pointer;
+  }
+  .card:hover { transform:translateY(-8px); box-shadow:0 25px 50px rgba(0,0,0,.12); }
+  .card-img { height:340px; overflow:hidden; background:#f2f0ec; }
+  .card-img img { width:100%; height:100%; object-fit:cover; transition:transform .6s ease; }
+  .card:hover .card-img img { transform:scale(1.07); }
+  .card-body { padding:26px 26px 30px; text-align:center; }
+  .card-body h3 { font-size:18px; font-weight:600; letter-spacing:1px; }
+  .card-body .cat { font-size:12px; color:#999; letter-spacing:2px; margin:8px 0 14px; }
+  .card-body .price { font-size:20px; font-weight:700; color:#b8935a; }
+  .card-body .price small { font-size:12px; color:#999; font-weight:400; }
+
+  .badge {
+    position:absolute; top:16px; left:16px; background:#1a1a1a; color:#fff;
+    font-size:10px; letter-spacing:2px; padding:7px 14px; z-index:2;
+  }
+  .badge.gold { background:#b8935a; }
+
+  .btn-card {
+    display:inline-block; margin-top:18px; padding:12px 32px;
+    border:1px solid #b8935a; color:#b8935a; background:none; font-size:11px;
+    letter-spacing:2px; transition:.3s; cursor:pointer;
+  }
+  .btn-card:hover { background:#b8935a; color:#fff; }
+
+  .trust {
+    background:#1a1a1a; color:#fff;
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:30px; padding:60px 8%; text-align:center;
+  }
+  .trust h4 { font-size:15px; letter-spacing:2px; margin-bottom:8px; color:#d4b483; }
+  .trust p { font-size:13px; color:#b5b2ad; line-height:1.6; }
+
+  .services-grid {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px; max-width:1200px; margin:0 auto;
+  }
+  .service {
+    background:#fff; border:1px solid #eceae5; padding:45px 35px; text-align:center; transition:.3s;
+  }
+  .service:hover { border-color:#b8935a; transform:translateY(-5px); }
+  .service .icon { font-size:34px; margin-bottom:20px; }
+  .service h3 { font-size:16px; letter-spacing:1px; margin-bottom:12px; }
+  .service p { font-size:13.5px; color:#777; line-height:1.7; }
+
+  .rdv {
+    background:linear-gradient(rgba(20,18,15,.85), rgba(20,18,15,.85)),
+      url('https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=1600&q=80') center/cover;
+    text-align:center; color:#fff; padding:110px 8%;
+  }
+  .rdv h2 { font-size:clamp(28px,4vw,44px); font-weight:300; margin-bottom:18px; }
+  .rdv h2 strong { font-weight:700; }
+  .rdv p { color:#cfcac2; max-width:520px; margin:0 auto 38px; line-height:1.7; }
+
+  #tryon-box { display:none; margin-top:40px; }
+  #video-wrap { position:relative; max-width:640px; aspect-ratio:4/3; margin:0 auto; border:3px solid #b8935a; border-radius:6px; background:#000; overflow:hidden; }
+  #video-wrap video, #video-wrap canvas { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:fill; transform:scaleX(-1); }
+  #menu { margin-top:20px; display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+  #menu .btn-card { margin-top:0; }
+  #menu .btn-card.actif { background:#b8935a; color:#fff; }
+  .tryon-sliders { margin-top:16px; display:flex; flex-direction:column; align-items:center; gap:8px; font-size:13px; letter-spacing:1px; color:#d4b483; }
+  .tryon-sliders label { display:flex; align-items:center; gap:10px; margin:0 !important; }
+  #status { color:#d4b483; margin-top:14px; font-size:13px; letter-spacing:2px; min-height:1.4em; }
+
+  footer { background:#111; color:#888; padding:60px 8% 30px; }
+  .foot-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:40px; margin-bottom:50px; }
+  .foot-grid h4 { color:#fff; font-size:13px; letter-spacing:2px; margin-bottom:18px; }
+  .foot-grid ul { list-style:none; font-size:13px; line-height:2.2; }
+  .foot-grid ul a:hover { color:#b8935a; }
+  .copyright { border-top:1px solid #2a2a2a; padding-top:25px; text-align:center; font-size:12px; }
+
+  .burger { display:none; font-size:26px; background:none; border:none; cursor:pointer; color:#1a1a1a; }
+
+  @media(max-width:768px){
+    section { padding:70px 6%; }
+    .burger { display:block; }
+    nav ul {
+      display:none; position:absolute; top:100%; left:0; width:100%;
+      background:#fff; flex-direction:column; padding:25px 6%;
+      border-bottom:1px solid #e8e5e0; gap:20px;
+    }
+    nav ul.open { display:flex; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">OPTIQUE <span>PRESTIGE</span></div>
+  <button class="burger" onclick="document.querySelector('nav ul').classList.toggle('open')">☰</button>
+  <ul>
+    <li><a href="#collection">COLLECTION</a></li>
+    <li><a href="#services">SERVICES</a></li>
+    <li><a href="#rdv">ESSAYAGE LIVE</a></li>
+  </ul>
+  <a href="#rdv" class="nav-cta">TESTER EN LIVE</a>
+</nav>
+
+<header>
+  <div class="content">
+    <div class="eyebrow">OPTICIEN — DEPUIS 2025</div>
+    <h1>L'excellence visuelle,<br><strong>à votre image.</strong></h1>
+    <p>Découvrez notre collection exclusive de montures design. Essayage virtuel en direct depuis votre navigateur, la monture suit votre visage automatiquement.</p>
+    <a href="#collection" class="btn-gold">DÉCOUVRIR LA COLLECTION</a>
+  </div>
+</header>
+
+<section id="collection">
+  <div class="section-head">
+    <div class="eyebrow">NOS BEST-SELLERS</div>
+    <h2>La <strong>Collection</strong></h2>
+  </div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="badge gold">★ BEST-SELLER</div>
+      <div class="card-img"><img src="https://images.unsplash.com/photo-1577803645773-f96470509666?w=800&q=80" alt="Le Rond"></div>
+      <div class="card-body">
+        <h3>LE ROND</h3>
+        <div class="cat">ACÉTATE · UNISEXE</div>
+        <div class="price">68 000 <small>F CFA</small></div><br>
+        <button class="btn-card" onclick="tryMonture(0)">TESTER LA MONTURE</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="badge">NOUVEAUTÉ</div>
+      <div class="card-img"><img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=800&q=80" alt="L'Aviateur"></div>
+      <div class="card-body">
+        <h3>L'AVIATEUR</h3>
+        <div class="cat">MÉTAL FIN · TITANE</div>
+        <div class="price">85 000 <small>F CFA</small></div><br>
+        <button class="btn-card" onclick="tryMonture(1)">TESTER LA MONTURE</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="badge">ÉDITION LIMITÉE</div>
+      <div class="card-img"><img src="https://images.unsplash.com/photo-1591076482161-42ce6da69f67?w=800&q=80" alt="Le Carré"></div>
+      <div class="card-body">
+        <h3>LE CARRÉ</h3>
+        <div class="cat">BIO-ACÉTATE · UNISEXE</div>
+        <div class="price">78 000 <small>F CFA</small></div><br>
+        <button class="btn-card" onclick="tryMonture(2)">TESTER LA MONTURE</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="badge gold">★ SIGNATURE</div>
+      <div class="card-img"><img src="https://images.unsplash.com/photo-1508296695146-257a814070b4?w=800&q=80" alt="Signature"></div>
+      <div class="card-body">
+        <h3>SIGNATURE</h3
+
+        <h3>SIGNATURE</h3>
+        <div class="cat">ACÉTATE PREMIUM · UNISEXE</div>
+        <div class="price">95 000 <small>F CFA</small></div><br>
+        <button class="btn-card" onclick="tryMonture(3)">TESTER LA MONTURE</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="trust">
+  <div><h4>✓ GARANTIE 2 ANS</h4><p>Toutes nos montures sont garanties contre les défauts de fabrication</p></div>
+  <div><h4>✓ VERRES OFFERTS</h4><p>Verres anti-lumière bleue inclus avec chaque monture</p></div>
+  <div><h4>✓ PAIEMENT FLEXIBLE</h4><p>Espèces, carte, ou paiement en 3 fois sans frais</p></div>
+</div>
+
+<section id="services">
+  <div class="section-head">
+    <div class="eyebrow">NOTRE EXPERTISE</div>
+    <h2>Nos <strong>Services</strong></h2>
+  </div>
+  <div class="services-grid">
+ <div class="service">
+      <div class="icon"></div>
+      <h3>EXAMEN DE VUE</h3>
+      <p>Bilan visuel complet réalisé par nos opticiens diplômés, sur rendez-vous.</p>
+    </div>
+    <div class="service">
+      <div class="icon"></div>
+      <h3>CONSEIL PERSONNALISÉ</h3>
+      <p>Analyse de la morphologie de votre visage pour trouver la monture parfaite.</p>
+    </div>
+    <div class="service">
+      <div class="icon"></div>
+      <h3>ATELIER INTÉGRÉ</h3>
+      <p>Ajustage, réparation et montage de verres réalisés sur place en 48h.</p>
+    </div>
+    <div class="service">
+      <div class="icon"></div>
+      <h3>MARQUES PREMIUM</h3>
+      <p>Une sélection rigoureuse de montures issues des plus grandes maisons.</p>
+    </div>
+  </div>
+</section>
+
+<section id="rdv" class="rdv">
+  <div class="eyebrow">ESSAYAGE VIRTUEL</div>
+  <h2>Testez vos montures <strong>EN LIVE</strong></h2>
+  <p>Activez votre caméra et essayez nos montures en temps réel. La monture suit votre visage automatiquement.</p>
+  <button class="btn-gold" onclick="startTryOn()">TESTER EN LIVE</button>
+
+  <div id="tryon-box">
+    <div id="video-wrap">
+      <video id="video" autoplay playsinline muted></video>
+      <canvas id="canvas" width="640" height="480"></canvas>
+    </div>
+    <div id="menu"></div>
+    <div class="tryon-sliders">
+      <label id="taille">Taille :
+        <input type="range" id="size" min="1.2" max="2.4" step="0.05" value="1.6" />
+      </label>
+    </div>
+    <p id="status"></p>
+    <div style="margin-top:15px;">
+      <button class="btn-card" style="border-color:#888; color:#888;" onclick="stopTryOn()">ARRÊTER</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-grid">
+    <div>
+      <h4>OPTIQUE PRESTIGE</h4>
+      <p style="font-size:13px; line-height:1.8;">L'univers de la vue.<br>Montures premium & suivi visuel.</p>
+    </div>
+    <div>
+      <h4>NAVIGATION</h4>
+      <ul>
+        <li><a href="#collection">Collection</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#rdv">Essayage Live</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>HORAIRES</h4>
+      <ul>
+        <li>Lun — Sam : 9h à 19h</li>
+        <li>Dimanche : fermé</li>
+      </ul>
+    </div>
+    <div>
+      <h4>CONTACT</h4>
+      <ul>
+        <li>+225 014687534</li>
+        <li>contact@optique-prestige.com</li>
+      </ul>
+    </div>
+  </div>
+  <div class="copyright">© 2025 Optique Prestige — Tous droits réservés</div>
+</footer>
+
+<script src="js/essayage.js"></script>
+
+</body>
+</html>
+
